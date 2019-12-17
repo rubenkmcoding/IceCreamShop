@@ -2,7 +2,7 @@ package eatable;
 
 public class Cone implements Eatable {
 
-    Flavor [] balls = new Flavor []{};
+    Flavor [] balls ;
 
     public Cone() {
     }
@@ -15,6 +15,10 @@ public class Cone implements Eatable {
     // hier ga ik  afprinten wat voor bollen of raketijse
     @Override
     public void eat() {
-
+        System.out.print("The cone taste is : ");
+        for (int i = 0; i <balls.length ; i++) {
+            System.out.print(" "+ balls[i]);
+        }
+        System.out.println("");
     }
 }

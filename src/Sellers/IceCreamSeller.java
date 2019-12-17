@@ -5,7 +5,7 @@ import eatable.*;
 public interface IceCreamSeller {
 
     //methode
-    void orderCone(Flavor[] cone);
+    Cone orderCone(Flavor[] cone);
 
     IceRocket orderIceRocket();
 

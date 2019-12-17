@@ -12,27 +12,41 @@ public class IceCreamCar implements IceCreamSeller {
     public IceCreamCar(PriceList priceList, Stock stock) {
         this.priceList = priceList;
         this.stock = stock;
-
     }
 
-
-    public Cone prepareCone(Flavor[] cone) {
-
-
-        return null;
+    @Override
+    public Cone orderCone(Flavor[] flavor) {
+        return prepareCone(flavor);
     }
+
+    private Cone prepareCone(Flavor[] flavors) {
+        Cone cone1 = new Cone(flavors);
+        //stock.getBalls() less than 1
+        //its finish
+
+        for (Flavor f:flavors){
+            profit = priceList.getBallPrice();
+        }
+
+        //stock.setBalls(stock.getBalls()-1);
+        return  cone1;
+
+        }
+
 
     public IceRocket orderIceRocket() {
-        return null;
+        return  null;
     }
 
 
 
-    public IceRocket prepare() {
-        return null;
+    public IceRocket prepareRocket() {
+
+return null;
     }
 
-    public void prepareMagnum(MagnumType magnum){
+
+    public void prepareMagnum(MagnumType magnumtype){
 
     }
 
@@ -40,10 +54,6 @@ public class IceCreamCar implements IceCreamSeller {
         return profit;
     }
 
-    @Override
-    public void orderCone(Flavor[] cone) {
-
-    }
 
     @Override
     public Magnum orderMagnum(MagnumType magnum) {

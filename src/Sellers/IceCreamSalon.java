@@ -1,9 +1,6 @@
 package Sellers;
 
-import eatable.Flavor;
-import eatable.IceRocket;
-import eatable.Magnum;
-import eatable.MagnumType;
+import eatable.*;
 
 public class IceCreamSalon implements IceCreamSeller {
 
@@ -26,19 +23,26 @@ public class IceCreamSalon implements IceCreamSeller {
 
     }
 
-    // implement methodes
-    public void orderCone(Flavor[] cone) {
+    // methodes implementeren
+    public Cone orderCone(Flavor[] flavors) {
+        Cone cone = new Cone(flavors); // nieuwe cone(ijshorens) aanmaken
+        totalProfit += priceList.getBallPrice() * flavors.length; // berekenen van prijs  ijsbol + smaak
+        return cone; // winst terug krijgen
 
     }
 
     @Override
     public IceRocket orderIceRocket() {
-        return null;
+        IceRocket iceRocket = new IceRocket();
+        totalProfit += priceList.getRocketPrice();
+        return iceRocket;
     }
 
     @Override
     public Magnum orderMagnum(MagnumType magnumType) {
-        return null;
+        Magnum magnumtype = new Magnum(magnumType);
+        totalProfit += priceList.getMagnumStandardPrice();
+        return magnumtype;
     }
 
     @Override
