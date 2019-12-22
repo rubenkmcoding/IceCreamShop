@@ -2,5 +2,5 @@ package Sellers;
 
 public interface Profitable {
 
-    double getProfit();
+   double getProfit();
 }

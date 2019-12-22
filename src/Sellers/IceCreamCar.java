@@ -1,63 +1,89 @@
 package Sellers;
 
 import eatable.*;
+import exceptions.NoMoreIceCreamException;
+
 
 public class IceCreamCar implements IceCreamSeller {
 
-    PriceList priceList;
-    Stock stock;
-    double profit;
+   private PriceList priceList;
+   private Stock stock;
+   private double profit;
 
-    // Constructor
-    public IceCreamCar(PriceList priceList, Stock stock) {
+   //------- Constructors----------
+
+
+    public IceCreamCar(PriceList priceList, Stock stock, double profit) {
         this.priceList = priceList;
         this.stock = stock;
+        this.profit = 0;
+    }
+
+
+    @Override
+    public Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException {
+        if(balls.length <= stock.getBalls() && stock.getCones()>=1){
+            return prepareCone(balls);
+        } else {
+            throw new NoMoreIceCreamException("Not enough balls or cones in stock to make cone");
+        }
     }
 
     @Override
-    public Cone orderCone(Flavor[] flavor) {
-        return prepareCone(flavor);
-    }
-
-    private Cone prepareCone(Flavor[] flavors) {
-        Cone cone1 = new Cone(flavors);
-        //stock.getBalls() less than 1
-        //its finish
-
-        for (Flavor f:flavors){
-            profit = priceList.getBallPrice();
+    public IceRocket orderIceRocket() throws NoMoreIceCreamException {
+        if(stock.getIceRockets()>=1){
+            stock.setIceRockets(stock.getIceRockets()-1);
+            return prepareIceRocket();
+        } else {
+            throw new NoMoreIceCreamException("All Ice rockets are sold out !");
         }
+    }
 
-        //stock.setBalls(stock.getBalls()-1);
-        return  cone1;
+    @Override
+    public Magnum orderMagnum(MagnumType type) throws NoMoreIceCreamException {
 
+        if(stock.getMagnums()>0){
+            return prepareMagnum(type);
+        } else {
+            throw new NoMoreIceCreamException("Out of Magnums - Cant order a Magnum anymore");
         }
-
-
-    public IceRocket orderIceRocket() {
-        return  null;
     }
 
-
-
-    public IceRocket prepareRocket() {
-
-return null;
-    }
-
-
-    public void prepareMagnum(MagnumType magnumtype){
-
-    }
-
+    @Override
     public double getProfit() {
         return profit;
     }
 
-
-    @Override
-    public Magnum orderMagnum(MagnumType magnum) {
-        return null;
+    private Cone prepareCone(Flavor[] balls){
+        Cone cone = new Cone();
+        for (Flavor flavor: balls
+        ) {
+            if(flavor != null){
+                cone.addFlavor(flavor);
+                profit += priceList.getBallPrice();
+            }
+        }
+        return cone;
+    }
+    private Magnum prepareMagnum(MagnumType type){
+        Magnum magnum = new Magnum(type);
+        profit += priceList.getMagnumPrice(type);
+        return magnum;
     }
 
+    private IceRocket prepareIceRocket(){
+        profit += priceList.getRocketPrice();
+        return new IceRocket();
+    }
+
+    @Override
+    public PriceList getPriceList() {
+        return priceList;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
 }
+
+

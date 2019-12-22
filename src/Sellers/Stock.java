@@ -2,55 +2,47 @@ package Sellers;
 
 public class Stock {
 
-    public int iceRocket;
-    public int cone;
-    public int balls;
-    public int magni;
+        private int iceRockets;
+        private int cones;
+        private int balls;
+        private int magnums;
 
+        public Stock(int iceRockets, int cones, int balls, int magnums) {
+            this.iceRockets = iceRockets;
+            this.cones = cones;
+            this.balls = balls;
+            this.magnums = magnums;
+        }
 
-    public Stock() {
-        this.iceRocket = 5;
-        this.cone = 4;
-        this.balls = 20;
-        this.magni = 10;
-}
+        public int getIceRockets() {
+            return iceRockets;
+        }
 
-    public Stock(int iceRocket, int cone, int balls, int magni) {
-        this.iceRocket = iceRocket;
-        this.cone = cone;
-        this.balls = balls;
-        this.magni = magni;
+        public void setIceRockets(int iceRockets) {
+            this.iceRockets = iceRockets;
+        }
+
+        public int getCones() {
+            return cones;
+        }
+
+        public void setCones(int cones) {
+            this.cones = cones;
+        }
+
+        public int getBalls() {
+            return balls;
+        }
+
+        public void setBalls(int balls) {
+            this.balls = balls;
+        }
+
+        public int getMagnums() {
+            return magnums;
+        }
+
+        public void setMagnums(int magnums) {
+            this.magnums = magnums;
+        }
     }
-
-    public int getIceRocket() {
-        return iceRocket;
-    }
-
-    public void setIceRocket(int iceRocket) {
-        this.iceRocket = iceRocket;
-    }
-
-    public int getCone() {
-        return cone;
-    }
-
-    public void setCone(int cone) {
-        this.cone = cone;
-    }
-
-    public int getBalls() {
-        return balls;
-    }
-
-    public void setBalls(int balls) {
-        this.balls = balls;
-    }
-
-    public int getMagni() {
-        return magni;
-    }
-
-    public void setMagni(int magni) {
-        this.magni = magni;
-    }
-}

@@ -1,14 +1,19 @@
 package Sellers;
 
 import eatable.*;
+import exceptions.NoMoreIceCreamException;
 
-public interface IceCreamSeller {
+public interface IceCreamSeller extends Profitable {
 
     //methode
-    Cone orderCone(Flavor[] cone);
 
-    IceRocket orderIceRocket();
 
-    Magnum orderMagnum(MagnumType magnum);
+    Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException;
+    IceRocket orderIceRocket() throws NoMoreIceCreamException;
+    Magnum orderMagnum(MagnumType type) throws NoMoreIceCreamException;
+
+    PriceList getPriceList();
+
+
 
 }

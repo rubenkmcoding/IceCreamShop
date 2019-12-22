@@ -4,52 +4,60 @@ import eatable.*;
 
 public class IceCreamSalon implements IceCreamSeller {
 
-    // declaration
-    PriceList priceList;
-    double totalProfit;
+    private PriceList priceList;
+    private double totalProfit;
 
-    // constructors
     public IceCreamSalon(PriceList priceList) {
         this.priceList = priceList;
+        this.totalProfit = 0;
     }
 
-    public IceCreamSalon(double totalProfit) {
-        this.totalProfit = totalProfit;
+    @Override
+    public Cone orderCone(Flavor[] balls) {
+        Cone cone = new Cone();
+        for (Flavor flavor: balls
+        ) {
+            cone.addFlavor(flavor);
+            totalProfit += priceList.getBallPrice();
+        }
+
+        return cone;
     }
 
-    //getter
-
-    public void getTotalProfit(){
-
-    }
-
-    // methodes implementeren
-    public Cone orderCone(Flavor[] flavors) {
-        Cone cone = new Cone(flavors); // nieuwe cone(ijshorens) aanmaken
-        totalProfit += priceList.getBallPrice() * flavors.length; // berekenen van prijs  ijsbol + smaak
-        return cone; // winst terug krijgen
-
-    }
 
     @Override
     public IceRocket orderIceRocket() {
-        IceRocket iceRocket = new IceRocket();
         totalProfit += priceList.getRocketPrice();
-        return iceRocket;
+        return new IceRocket();
     }
 
     @Override
-    public Magnum orderMagnum(MagnumType magnumType) {
-        Magnum magnumtype = new Magnum(magnumType);
-        totalProfit += priceList.getMagnumStandardPrice();
-        return magnumtype;
+    public Magnum orderMagnum(MagnumType type) {
+        Magnum magnum = new Magnum(type);
+        totalProfit += priceList.getMagnumPrice(type);
+        return magnum;
+    }
+
+    @Override
+    public double getProfit() {
+        return totalProfit;
+    }
+
+    @Override
+    public PriceList getPriceList() {
+        return priceList;
+    }
+
+    public double getTotalProfit() {
+        return totalProfit;
     }
 
     @Override
     public String toString() {
-        return "IcecreamSalon{" +
+        return "IceCreamSalon{" +
                 "priceList=" + priceList +
                 ", totalProfit=" + totalProfit +
                 '}';
     }
 }
+

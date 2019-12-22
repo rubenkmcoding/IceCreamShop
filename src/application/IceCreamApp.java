@@ -1,59 +1,79 @@
 package application;
 
-import Sellers.IceCreamCar;
+
 import Sellers.IceCreamSalon;
+import Sellers.IceCreamSeller;
 import Sellers.PriceList;
-import Sellers.Stock;
-import eatable.Cone;
 import eatable.Eatable;
 import eatable.Flavor;
+import eatable.MagnumType;
+import exceptions.NoMoreIceCreamException;
 
 public class IceCreamApp {
 
-    public static void main(String[] args) {
-        // init the value for price via constructor
-        PriceList priceList = new PriceList(2,2,1.5);
+ public static void main(String[] args) throws NoMoreIceCreamException {
 
-        // init the valeu for stock - means How many balls or magin in the stock that exist in the Icecreamcar
-        Stock stock = new Stock(5,5,5,5);
+  PriceList priceList = new PriceList(1.5, 3.5, 3);
+  IceCreamSeller iceCreamSalon = new IceCreamSalon(priceList);
 
-        // make new constructor for init the price and stock that reference to icecream object
-        IceCreamCar iceCreamCar = new IceCreamCar(priceList,stock);
+  Eatable[] orderedIceCreams = new Eatable[5];
+  Flavor[] order1 = {Flavor.LEMON, Flavor.BANANA};
 
-        // create an order by flavor as array refer to flavor1
-        Flavor [] flavors1 = {Flavor.BANANA,Flavor.LEMON};
-        Flavor [] flavors2 = {Flavor.LEMON};
-        Flavor [] flavors3 = {Flavor.MOKKA,Flavor.LEMON};
-        Flavor [] flavors4 = {Flavor.BANANA,Flavor.LEMON,Flavor.PISTACHE};
-        Flavor [] flavors5 = {Flavor.MOKKA};
-        Flavor [] flavors6 = {Flavor.MOKKA};
+  orderedIceCreams[0] = iceCreamSalon.orderMagnum(MagnumType.BLACKCHOCOLATE);
+  orderedIceCreams[1] = iceCreamSalon.orderMagnum(MagnumType.ALPINENUTS);
+  orderedIceCreams[2] = iceCreamSalon.orderCone(order1);
+  orderedIceCreams[3] = iceCreamSalon.orderIceRocket();
 
-
-        // create an array for the eatable that save the orders inside it
-        Eatable[] eatables = new Eatable[10];
-
-        eatables[0] = iceCreamCar.orderCone(flavors1);
-//        eatables[0].eat();
-        eatables[1] = iceCreamCar.orderCone(flavors2);
-//        eatables[1].eat();
-        eatables[2] = iceCreamCar.orderCone(flavors3);
-
-        eatables[3] = iceCreamCar.orderCone(flavors4);
-//        eatables[3].eat();
-        eatables[4] = iceCreamCar.orderCone(flavors5);
-//        eatables[4].eat();
-
-        eatables[5] = iceCreamCar.orderCone(flavors6);
-
-        eatables[2].eat();
+  for (Eatable ice: orderedIceCreams
+  ) {
+   if(ice != null){
+    ice.eat();
+   }
+  }
+  System.out.println("The IceCreamSalon made " + iceCreamSalon.getProfit() + " €");
+ }
 
 
-
-
-
-
-        //        IceCreamSalon iceCreamSalon = new IceCreamSalon(priceList);
-
-
-    }
 }
+
+
+// ====================== tweede optie ======================================
+
+//    public static void main(String[] args) throws Exception {
+//        // init the value for price via constructor
+//       PriceList priceList = new PriceList();// prijs is al ingegeven in de (priceList Constructor)
+//
+//        // init the valeu for stock - means How many balls or magin in the stock that exist in the Icecreamcar
+//        Stock stock = new Stock(); //<=====  prijslist instantie
+//
+//        //IceCreamSalon instantie met behulp van pricelist in de IceCreamSeller varaibele ingestoken.
+//        IceCreamSeller iceCreamSalon = new IceCreamSalon(priceList);
+//        //bestelling smaak
+//        Flavor[] flavors = {Flavor.MOKKA,Flavor.BANANA,Flavor.STRAWBERRY};
+//        Flavor[] flavors1 = {Flavor.LEMON,Flavor.BANANA,Flavor.VANILLA};
+//        Flavor[] flavors2 = {Flavor.MOKKA,Flavor.PISTACHE,Flavor.STRAWBERRY};
+//        Flavor[] flavors3 = {Flavor.STRACIATELLA,Flavor.BANANA,Flavor.STRAWBERRY};
+//        Flavor[] flavors4 = {Flavor.MOKKA,Flavor.BANANA,Flavor.CHOCOLATE};
+//
+//
+//        // Eatable instantie maken
+//        Eatable [] iceCream = new Eatable [5];
+//        // bestelling 5 iceCream plaatsen, en in de array van Eatable steken.
+//        iceCream[0] = iceCreamSalon.orderCone(flavors1);
+//        iceCream[1] = iceCreamSalon.orderCone(flavors3);
+//        iceCream[2] = iceCreamSalon.orderCone(flavors);
+//        iceCream[3] = iceCreamSalon.orderCone(flavors4);
+//        iceCream[4] = iceCreamSalon.orderCone(flavors2);
+//
+//
+//
+//        System.out.println("total profit:" + iceCreamSalon.orderCone(flavors));
+//
+//    }
+//
+//}
+
+
+
+
+

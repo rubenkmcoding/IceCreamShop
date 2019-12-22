@@ -1,6 +1,6 @@
 package eatable;
 
-public enum MagnumType {
+public enum MagnumType{
 
     MILKCHOCOLATE,
     WHITECHOCOLATE,
